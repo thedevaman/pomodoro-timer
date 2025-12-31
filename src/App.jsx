@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import { Form, Input, Modal } from "antd";
 import { AlarmCheck, Calendar, Plus } from "lucide-react";
 import React, { useState } from "react";
 
@@ -42,7 +42,11 @@ const [open, setOpen] = useState(false)
     </div>
    </div>
    <Modal open={open} footer={null} onCancel={()=>setOpen(false)} title="Create New Goal">
-
+     <Form layout="vertical">
+      <Form.Item label="Task Name">
+        <Input></Input>
+      </Form.Item>
+     </Form>
    </Modal>
   </div>
   )
