@@ -10,8 +10,8 @@ import { nanoid } from "nanoid";
 const App = ()=>{
 const [open, setOpen] = useState(false)
 const [form] = useForm()
-const {goals, setGoal} = useGoal()
-const [progresstimer,setProgress] = useState(0)
+const {goals, setGoal, updateProgress} = useGoal()
+
 
 const createGoal = (value) =>{
   value.progress = 0
@@ -29,7 +29,7 @@ const handleClose = ()=>{
 
 const trackProgress = (e)=>{
   setInterval(()=>{
-   setProgress(progresstimer+1)
+  updateProgress(e)
   },1000)
 // console.log(e.title="huhj")
 }
@@ -59,7 +59,7 @@ const trackProgress = (e)=>{
               {moment(item.date).format('DD MMM YYYY hh:mm A')}</label>
             <div className="mt-4 flex items-center gap-8">
               <h1 className="text-3xl font-bold">{item.progress} - {item.timer} Min</h1>
-               <button onClick={()=>trackProgress(item)} className="shadow-lg active:scale-80 duration-300 bg-gradient-to-r from-indigo-600 via-blue-500 to-indigo-600 text-white px-8 py-3 rounded flex">
+               <button onClick={()=>trackProgress(item.id)} className="shadow-lg active:scale-80 duration-300 bg-gradient-to-r from-indigo-600 via-blue-500 to-indigo-600 text-white px-8 py-3 rounded flex">
                 <AlarmCheck className="mr-1"/>  
                 Start
               </button>
